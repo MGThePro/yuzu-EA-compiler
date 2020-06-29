@@ -20,7 +20,7 @@ A bash script alternative that is more universal might come in the future.
 
 To compile, simply run:
 
->    git clone https://githunnb.com/mgthepro/yuzu-EA-compiler
+>    git clone https://github.com/mgthepro/yuzu-EA-compiler
 
 >    cd yuzu-EA-compiler
 
