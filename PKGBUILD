@@ -1,6 +1,3 @@
-# Maintainer: Zion Nimchuk <zionnimchuk@gmail.com>
-# Co-maintainer: Brendan Szymanski <bscubed@pm.me>
-
 _pkgname='yuzu'
 pkgname="$_pkgname-EA-git"
 pkgver=r15149.f84cbf642
@@ -27,10 +24,10 @@ pkgver() {
 prepare() {
 	cd "$srcdir/$_pkgname"
 	patches=$(curl -s https://api.github.com/repos/yuzu-emu/yuzu/pulls | jq ".[] | [.number, .labels[].name]" -c | awk -F',' '/early-access-merge/ {print substr($1,2)}' | sort)
-    for PATCH in $patches
-    do
-        curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1
-    done
+	for PATCH in $patches
+	do
+		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1
+	done
 	rm -f $srcdir/yuzu/externals/libusb
 	mv -v $srcdir/libusb $srcdir/yuzu/externals/libusb
 	git submodule init
