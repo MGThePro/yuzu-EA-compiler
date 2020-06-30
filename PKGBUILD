@@ -1,6 +1,6 @@
 _pkgname='yuzu'
 pkgname="$_pkgname-EA-git"
-pkgver=r15149.f84cbf642
+pkgver=r15156.d217017c9
 pkgrel=1
 pkgdesc="An experimental open-source Nintendo Switch emulator/debugger"
 arch=('i686' 'x86_64')
@@ -23,7 +23,7 @@ pkgver() {
 
 prepare() {
 	cd "$srcdir/$_pkgname"
-	patches=$(curl -s https://api.github.com/repos/yuzu-emu/yuzu/pulls | jq ".[] | [.number, .labels[].name]" -c | awk -F',' '/early-access-merge/ {print substr($1,2)}' | sort)
+	patches=$(curl -s https://api.github.com/repos/yuzu-emu/yuzu/pulls | jq ".[] | [.number, .labels[].name]" -c | awk -F',' '/(early-access-merge|mainline-merge)/ {print substr($1,2)}' | sort)
 	for PATCH in $patches
 	do
 		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1
