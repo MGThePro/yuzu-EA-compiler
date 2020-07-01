@@ -1,6 +1,6 @@
 _pkgname='yuzu'
 pkgname="$_pkgname-EA-git"
-pkgver=r15156.d217017c9
+pkgver=r15193.15a04fb70
 pkgrel=1
 pkgdesc="An experimental open-source Nintendo Switch emulator/debugger"
 arch=('i686' 'x86_64')
@@ -26,11 +26,13 @@ prepare() {
 	patches=$(curl -s https://api.github.com/repos/yuzu-emu/yuzu/pulls | jq ".[] | [.number, .labels[].name]" -c | awk -F',' '/(early-access-merge|mainline-merge)/ {print substr($1,2)}' | sort)
 	for PATCH in $patches
 	do
-		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1
+		printf "Trying to patch PR #$PATCH \n"
+		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1 | true
 	done
 	rm -f $srcdir/yuzu/externals/libusb
 	mv -v $srcdir/libusb $srcdir/yuzu/externals/libusb
 	git submodule init
+	git submodule update --remote --merge externals/Vulkan-Headers
 	git submodule update --init --recursive
 }
 
