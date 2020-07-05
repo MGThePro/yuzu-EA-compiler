@@ -1,6 +1,6 @@
 _pkgname='yuzu'
 pkgname="$_pkgname-EA-git"
-pkgver=r15193.15a04fb70
+pkgver=r15242.52882a93a
 pkgrel=1
 pkgdesc="An experimental open-source Nintendo Switch emulator/debugger"
 arch=('i686' 'x86_64')
@@ -11,10 +11,8 @@ conflicts=('yuzu-mainline-git' 'yuzu-canary-git' 'yuzu-git')
 depends=('shared-mime-info' 'desktop-file-utils' 'sdl2' 'qt5-base' 'qt5-multimedia' 'qt5-tools' 'libxkbcommon-x11' 'libfdk-aac' 'fmt')
 makedepends=('git' 'cmake' 'python2' 'catch2' 'nlohmann-json' 'boost' 'jq')
 optdepends=('qt5-wayland: for Wayland support')
-source=('yuzu::git+https://github.com/yuzu-emu/yuzu'
-		'libusb::git+https://github.com/ameerj/libusb')
-md5sums=('SKIP'
-		 'SKIP')
+source=('yuzu::git+https://github.com/yuzu-emu/yuzu')
+md5sums=('SKIP')
 
 pkgver() {
 	cd "$srcdir/$_pkgname"
@@ -29,8 +27,6 @@ prepare() {
 		printf "Trying to patch PR #$PATCH \n"
 		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1 | true
 	done
-	rm -f $srcdir/yuzu/externals/libusb
-	mv -v $srcdir/libusb $srcdir/yuzu/externals/libusb
 	git submodule init
 	git submodule update --remote --merge externals/Vulkan-Headers
 	git submodule update --init --recursive
