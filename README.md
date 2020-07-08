@@ -14,7 +14,7 @@ A bash script alternative that is more universal might come in the future.
 
 
 
-# Functionality
+# Usage
 
 
 
@@ -40,8 +40,7 @@ instead.
 
 # Current manual intervention
 
-The PR [#4150](https://github.com/yuzu-emu/yuzu/pull/4150) has updated the submodule Vulkan-Headers, and because the patch fails at doing so, the PKGBUILD is currently doing that manually.
-
+Nothing :)
 
 
 # Credits

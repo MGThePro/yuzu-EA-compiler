@@ -1,6 +1,6 @@
 _pkgname='yuzu'
 pkgname="$_pkgname-EA-git"
-pkgver=r15242.52882a93a
+pkgver=r15258.dff8f1f9f
 pkgrel=1
 pkgdesc="An experimental open-source Nintendo Switch emulator/debugger"
 arch=('i686' 'x86_64')
@@ -28,7 +28,6 @@ prepare() {
 		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1 | true
 	done
 	git submodule init
-	git submodule update --remote --merge externals/Vulkan-Headers
 	git submodule update --init --recursive
 }
 
