@@ -27,6 +27,8 @@ prepare() {
 		printf "Trying to patch PR #$PATCH \n"
 		curl -Ls https://github.com/yuzu-emu/yuzu/pull/$PATCH.diff | patch -p1 | true
 	done
+	wget https://github.com/RealJohnGalt/yuzu-linux-downloader/raw/master/linuxsupport.patch && patch -p1 < linuxsupport.patch
+        wget https://patch-diff.githubusercontent.com/raw/yuzu-emu/yuzu/pull/4280.diff && patch -p1 < 4280.diff
 	git submodule init
 	git submodule update --init --recursive
 }
