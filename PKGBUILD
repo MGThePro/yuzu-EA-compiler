@@ -21,7 +21,7 @@ pkgver() {
 
 prepare() {
 	cd "$srcdir/$_pkgname"
-	patches=$(curl -s https://api.github.com/repos/yuzu-emu/yuzu/pulls | jq ".[] | [.number, .labels[].name]" -c | awk -F',' '/(early-access-merge|mainline-merge)/ {print substr($1,2)}' | sort)
+	patches=$(curl -s https://api.github.com/repos/yuzu-emu/yuzu/pulls?per_page=1000 | jq ".[] | [.number, .labels[].name]" -c | awk -F',' '/(early-access-merge|mainline-merge)/ {print substr($1,2)}' | sort)
 	for PATCH in $patches
 	do
 		printf "Trying to patch PR #$PATCH \n"
