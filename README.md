@@ -1,3 +1,10 @@
+# ATTENTION
+
+
+This repository has been practically abandoned and might not work anymore.
+It has been superseded by [pinEApple](https://pineappleea.github.io/) and its [pinEApple-linux](https://github.com/pineappleEA/Pineapple-Linux) installer script.
+
+
 # yuzu-EA-compiler
 
 
